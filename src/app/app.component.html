@@ -1,17 +1,29 @@
 <div class="container">
-  <app-cockpit></app-cockpit>
+  <!-- Binding to Custom Events -->
+  <!--<app-cockpit
+               (serverCreated)="onServerAdded($event)"
+               (blueprintCreated)="onBlueprintAdded($event)">
+      </app-cockpit>
+  -->
+  <!-- also you can -->
+  <!-- Use an alias for Custom Events as per below -->
+  <app-cockpit (serverCreated)="onServerAdded($event)"
+               (bpCreated)="onBlueprintAdded($event)">
+  </app-cockpit>
   <hr>
   <div class="row">
     <div class="col-xs-12">
+      <!-- Binding to Custom Properties -->
       <!--
-      <app-server-element
-        *ngFor="let serverElement of serverElements"
-        [element]="serverElement">
-      </app-server-element>
-  -->
-      <app-server-element
-        *ngFor="let serverElement of serverElements"
-        [srvElement]="serverElement">
+          <app-server-element
+            *ngFor="let serverElement of serverElements"
+            [element]="serverElement">
+          </app-server-element>
+      -->
+      <!-- also you can -->
+      <!-- Use an alias for Custom Properties as per below -->
+      <app-server-element *ngFor="let serverElement of serverElements"
+                          [srvElement]="serverElement">
       </app-server-element>
     </div>
   </div>

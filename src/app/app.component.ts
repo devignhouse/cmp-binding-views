@@ -15,12 +15,14 @@ export class AppComponent {
       content: serverData.serverContent
     });
   }
-
   onBlueprintAdded( blueprintData : {serverName:string, serverContent:string} ) {
     this.serverElements.push({
       type: 'blueprint',
       name: blueprintData.serverName,
       content: blueprintData.serverContent
     });
+  }
+  onElementRemoved(removableData: { removableIndex: number }) {
+    this.serverElements.splice(removableData.removableIndex, 1);
   }
 }

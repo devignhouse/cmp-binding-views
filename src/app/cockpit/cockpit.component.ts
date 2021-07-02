@@ -2,7 +2,10 @@ import {
   Component,
   OnInit,
   EventEmitter,
-  Output
+  Output,
+  ViewChild,
+
+  ElementRef
 } from '@angular/core';
 
 @Component({
@@ -17,23 +20,28 @@ export class CockpitComponent implements OnInit {
   // also you can
   // Assign an alias for Custom Events as per below
   // @Output('bpCreated') blueprintCreated = new EventEmitter<{ serverName: string, serverContent: string}>();
-  newServerName = '';
-  newServerContent = '';
+
+  // original properties used
+  //newServerName = '';
+  //newServerContent = '';
+  @ViewChild('serverContentInput', { static: true }) serverContentInput: ElementRef;
 
   constructor() { }
   ngOnInit(): void {
   }
 
-  onAddServer() {
+  onAddServer(nameInput: HTMLInputElement) {
+    console.log(this.serverContentInput);
     this.serverCreated.emit({
-      serverName: this.newServerName,
-      serverContent: this.newServerContent
+      //serverName: this.newServerName,
+      serverName: nameInput.value,
+      serverContent: this.serverContentInput.nativeElement.value
     })
   }
-  onAddBlueprint() {
+  onAddBlueprint(nameInput) {
     this.blueprintCreated.emit({
-      serverName: this.newServerName,
-      serverContent: this.newServerContent
+      serverName: nameInput.value,
+      serverContent: this.serverContentInput.nativeElement.value
     })
   }
 }

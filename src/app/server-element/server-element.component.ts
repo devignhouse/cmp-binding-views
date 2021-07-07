@@ -12,7 +12,10 @@ import {
   AfterViewInit,
   AfterViewChecked,
   OnDestroy,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild,
+  ContentChild,
+  ElementRef
 } from '@angular/core';
 
 @Component({
@@ -36,16 +39,22 @@ export class ServerElementComponent implements
   // Properties shared from a Parent Component
   // Binding to Custom Properties
   @Input() element: { type: string, name: string, content: string };
+  @Input() name: string;
   @Input() removableIndex: number;
   // also you can
   // Assign an alias for Custom Properties as per below
   // @Input('srvElement') element: { type: string, name: string, content: string };
-  @Input() name: string;
+  @ViewChild('heading', { static: true }) header: ElementRef;
+  @ContentChild('contentParagraph', { static: true }) paragraph: ElementRef;
+
   constructor() {
     console.log("Constructor triggered");
   }
   ngOnInit(): void {
     console.log("ngOnInit triggered!");
+    // textContent for the div is empty as the view has not been initialized yet
+    console.log('text content: ' + this.header.nativeElement.textContent);
+    console.log('text content of paragraph: ' + this.paragraph.nativeElement.textContent);
   }
 
   // Receives a changes argument
@@ -58,12 +67,15 @@ export class ServerElementComponent implements
   }
   ngAfterContentInit() {
     console.log("ngAfterContentInit triggered!");
+    console.log('text content of paragraph: ' + this.paragraph.nativeElement.textContent);
+
   }
   ngAfterContentChecked() {
     console.log("ngAfterContentChecked triggered!");
   }
   ngAfterViewInit() {
     console.log("ngAfterViewInit triggered!");
+    console.log('text content: ' + this.header.nativeElement.textContent);
   }
   ngAfterViewChecked() {
     console.log("ngAfterViewChecked triggered!");

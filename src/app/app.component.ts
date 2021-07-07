@@ -25,4 +25,7 @@ export class AppComponent {
   onElementRemoved(removableData: { removableIndex: number }) {
     this.serverElements.splice(removableData.removableIndex, 1);
   }
+  onChangeFirst() {
+    this.serverElements[0].name = 'Changed!';
+  }
 }

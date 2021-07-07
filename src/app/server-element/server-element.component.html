@@ -1,19 +1,27 @@
 <div class="panel panel-default">
-  <div class="panel-heading">
+  <!--<div class="panel-heading">
     {{ element.name }}
     <button class="btn-xs btn btn-danger pull-right"
-      type="button"
-      data-toggle="tooltip"
-      data-placement="top"
-      title="Delete"
-      (click)="onRemoveElement()">
+            type="button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Delete"
+            (click)="onRemoveElement()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </button>
+  </div>-->
+  <div class="panel-heading">
+    {{ name }}
+    <button class="btn-xs btn btn-danger pull-right"
+            type="button"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Delete"
+            (click)="onRemoveElement()">
       <i class="glyphicon glyphicon-trash"></i>
     </button>
   </div>
   <div class="panel-body">
-    <p>
-      <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
-      <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
-    </p>
+    <ng-content></ng-content>
   </div>
 </div>

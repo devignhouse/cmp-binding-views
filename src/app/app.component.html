@@ -14,12 +14,17 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onChangeFirst()">Change First Element</button>
       <!-- Binding to Custom Properties -->
-      <app-server-element
-        *ngFor="let serverElement of serverElements; let i = index"
+      <app-server-element *ngFor="let serverElement of serverElements; let i = index"
         [element]="serverElement"
+        [name]="serverElement.name"
         [removableIndex]="i"
         (elementDeleted)="onElementRemoved($event)">
+        <p>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p>
       </app-server-element>    
       <!-- also you can use an alias for Custom Properties as per below -->
       <!--
